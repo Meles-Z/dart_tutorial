@@ -6,6 +6,10 @@ I used a linked list for this, there are multiple methods
  to achieve this, but I preferred using a linked list to take advantage 
  of dynamic memory allocation. Some of you may choose to use a list or 
  other built-in functions to accomplish this task.
+
+ ** when you register task type status as complete or pending**
+ **when you edit your task use title of task to find wich task will editable**
+ Have a good testing time
 */
 import 'dart:io';
 class Task{
@@ -211,7 +215,6 @@ void main(){
         return;
       default:
         print("Invalid choice please try again");
-
     }
   }
 }
