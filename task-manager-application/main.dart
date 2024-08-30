@@ -45,7 +45,7 @@ class taskManageApp{
     }
   }
 
-  void printTask(){
+  void viewTask(){
     if(head==null){
       print("Task is empty");
       return;
@@ -60,15 +60,47 @@ class taskManageApp{
       current=current.next;
     }
   }
+  void editTask(){
+
 }
+
+void deleteTask() {
+  if (head == null) {
+    print("Task list is empty. Nothing to delete.");
+    return;
+  }
+
+  // delete if only one node
+  if (head!.next == null) {
+    head = null; 
+    return;
+  }
+
+  Task? current = head;
+  Task? previous = null;
+  while (current != null && current.next != null) {
+    previous = current;
+    current = current.next;
+  }
+
+  if (previous != null) {
+    previous.next = null; 
+  } else {
+    print("Unexpected error: Could not find node to delete.");
+  }
+}
+}
+
+
 
 void main(){
   final taskManager=taskManageApp();
   while(true){
     print("Task manager");
     print("1:Add task");
-    print("2:Print task");
-    print("3: Exit");
+    print("2:View task");
+    print("3:Delete task");
+    print("4: Exit");
 
     final choice=int.tryParse(stdin.readLineSync()!)??0;
     switch(choice){
@@ -76,9 +108,12 @@ void main(){
         taskManager.addTask();
         break;
       case 2:
-        taskManager.printTask();
+        taskManager.viewTask();
         break;
       case 3:
+        taskManager.deleteTask();
+        break;
+      case 4:
         print("Exiting");
         return;
       default:
