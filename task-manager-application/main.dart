@@ -1,8 +1,11 @@
 
 /*
-Hi ketema i beliave you read this code carefully. I use linked list for this beacuase there is multi 
-method how we can do this but i preaferd lisked list for this to use daynamic memory location.
-maybe many of your guys can use list and other some biult in function to do this task.
+Hi Ketema CEO of Zulu Tech
+I believe you have carefully read this code. 
+I used a linked list for this, there are multiple methods
+ to achieve this, but I preferred using a linked list to take advantage 
+ of dynamic memory allocation. Some of you may choose to use a list or 
+ other built-in functions to accomplish this task.
 */
 import 'dart:io';
 class Task{
@@ -56,6 +59,42 @@ class taskManageApp{
       print("Desctiption:${current.Description}");
       print("DueDate:${current.DeuDate}");
       print("Status:${current.Status}");
+      current=current.next;
+    }
+  }
+
+  void viewCompletedTask(){
+    if(head==null){
+      print("Task is empty");
+      return;
+    }
+    Task? current=head;
+    while(current !=null){
+      if(current.Status=="complete"){
+        print("-----------");
+        print("Title:${current.title}");
+        print("Desctiption:${current.Description}");
+        print("DueDate:${current.DeuDate}");
+        print("Status:${current.Status}");
+      }
+      current=current.next;
+    }
+  }
+
+  void viewPendingTask(){
+    if(head==null){
+      print("Task is empty");
+      return;
+    }
+    Task? current=head;
+    while(current !=null){
+      if(current.Status=="pending"){
+        print("-----------");
+        print("Title:${current.title}");
+        print("Desctiption:${current.Description}");
+        print("DueDate:${current.DeuDate}");
+        print("Status:${current.Status}");
+      }
       current=current.next;
     }
   }
@@ -139,10 +178,12 @@ void main(){
   while(true){
     print("Task manager");
     print("1:Add task");
-    print("2:View task");
-    print("3:Edit task");
-    print("4:Delete task");
-    print("5: Exit");
+    print("2:View All task");
+    print("3:View completed task");
+    print("4:View Pending task");
+    print("5:Edit task");
+    print("6:Delete task");
+    print("7: Exit");
 
     final choice=int.tryParse(stdin.readLineSync()!)??0;
     switch(choice){
@@ -153,13 +194,19 @@ void main(){
         taskManager.viewTask();
         break;
       case 3:
+        taskManager.viewCompletedTask();
+        break;
+      case 4:
+        taskManager.viewPendingTask();
+        break;
+      case 5:
         taskManager.editTask();
        
         break;
-      case 4:
+      case 6:
         taskManager.deleteTask();
         return;
-      case 5:
+      case 7:
         print("Exiting");
         return;
       default:
