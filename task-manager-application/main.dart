@@ -6,10 +6,10 @@ maybe many of your guys can use list and other some biult in function to do this
 */
 import 'dart:io';
 class Task{
-final String title;
-final String Description;
-final String DeuDate;
-final String Status;
+ String title;
+String Description;
+String DeuDate;
+String Status;
 Task? next;
 
 Task({required this.title, 
@@ -41,7 +41,6 @@ class taskManageApp{
         current=current.next;
       }
       current.next=newTask;
-
     }
   }
 
@@ -60,9 +59,53 @@ class taskManageApp{
       current=current.next;
     }
   }
-  void editTask(){
 
+  void editTask() {
+  if (head == null) {
+    print("Task list is empty. Nothing to edit.");
+    return;
+  }
+
+  print("Enter the title of the task you want to edit:");
+  final titleToEdit = stdin.readLineSync()!;
+
+  Task? current = head;
+  while (current != null) {
+    if (current.title == titleToEdit) {
+      print("Enter new title :");
+      final newTitle = stdin.readLineSync();
+      if (newTitle != null && newTitle.isNotEmpty) {
+        current.title = newTitle;
+      }
+
+      print("Enter new description (or leave blank to keep the same):");
+      final newDescription = stdin.readLineSync();
+      if (newDescription != null && newDescription.isNotEmpty) {
+        current.Description = newDescription;
+      }
+
+      print("Enter new due date (or leave blank to keep the same):");
+      final newDueDate = stdin.readLineSync();
+      if (newDueDate != null && newDueDate.isNotEmpty) {
+        current.DeuDate = newDueDate;
+      }
+
+      print("Enter new status (or leave blank to keep the same):");
+      final newStatus = stdin.readLineSync();
+      if (newStatus != null && newStatus.isNotEmpty) {
+        current.Status = newStatus;
+      }
+
+      print("Task edited successfully!");
+      return;
+    }
+
+    current = current.next;
+  }
+
+  print("Task with title '$titleToEdit' not found.");
 }
+
 
 void deleteTask() {
   if (head == null) {
@@ -91,16 +134,15 @@ void deleteTask() {
 }
 }
 
-
-
 void main(){
   final taskManager=taskManageApp();
   while(true){
     print("Task manager");
     print("1:Add task");
     print("2:View task");
-    print("3:Delete task");
-    print("4: Exit");
+    print("3:Edit task");
+    print("4:Delete task");
+    print("5: Exit");
 
     final choice=int.tryParse(stdin.readLineSync()!)??0;
     switch(choice){
@@ -111,9 +153,13 @@ void main(){
         taskManager.viewTask();
         break;
       case 3:
-        taskManager.deleteTask();
+        taskManager.editTask();
+       
         break;
       case 4:
+        taskManager.deleteTask();
+        return;
+      case 5:
         print("Exiting");
         return;
       default:
