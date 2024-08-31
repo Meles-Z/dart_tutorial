@@ -31,11 +31,16 @@ class GuessingGame {
     player.GussNumber = guassNumber;
     if (player.GussNumber < numberToBeGuessed) {
       player.isLower();
+      player.isWin = false;
     } else if (player.GussNumber > numberToBeGuessed) {
       player.isGreater();
-    } else {
+      player.isWin = false;
+    } else if (player.GussNumber == numberToBeGuessed) {
       player.isCorrect();
       player.isWin = true;
+    } else {
+      player.isNotInBound();
+      player.isWin = false;
     }
   }
 }
@@ -58,6 +63,10 @@ class Players {
 
   void isCorrect() {
     print("correct !");
+  }
+
+  void isNotInBound() {
+    print("Number you entered is outbound");
   }
 }
 
@@ -89,5 +98,4 @@ void main() {
   print("Game Over! Thanks for playing.");
 
   // could you tell me how can i do to make my code is not exit after the winner known
-
 }
