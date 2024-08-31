@@ -1,22 +1,52 @@
-/* i want to implement number gussing game to learn more deep of dart
- this game is generated random number between 1-100 if the number is lower than or greater than expected number 
- it will tell you hint. if you are correctly guss you win the game 
+/* 
+Hi Gerema, my code reviewer (Fullstack Developer), when you review my code, 
+please feel free to reach out with any feedback or concerns you may have.
 
- I want to code this for code review
+Hi Keteam, CEO of Zulu Tech, thank you for the opportunity to work on this p
+roject and for allowing me to complete it to a high standard.
+
+I want to implement a game where two players try to guess a randomly generated number.
+ The number will be between 1 and 20. If a player's guess is too low or too high, 
+ the game will provide a hint. The players take turns guessing until one of them 
+ correctly guesses the number and wins the game.
+
+Why I chose this task: I want to learn more about some commonly used built-in packages
+in Dart and gain a better understanding of how the numbering system works in Dart.
+
 */
 
 import 'dart:io';
 import 'dart:math';
 
 class GuessingGame {
-  var numberToBeGuessed = Random();
+  int numberToBeGuessed;
+  GuessingGame() : numberToBeGuessed = Random().nextInt(20) + 1;
+  void startPlay(Players player) {
+    print("${player.playerName} Enter your guss:");
+    int? guassNumber = int.tryParse(stdin.readLineSync()!);
+    if (guassNumber == null) {
+      print("Invalid input. please enter valid number");
+      return;
+    }
+    player.GussNumber = guassNumber;
+    if (player.GussNumber < numberToBeGuessed) {
+      player.isLower();
+    } else if (player.GussNumber > numberToBeGuessed) {
+      player.isGreater();
+    } else {
+      player.isCorrect();
+      player.isWin = true;
+    }
+  }
 }
 
 class Players {
-  String playerName = "";
-  int GussNumber = 0;
-  bool isWin = false;
-  Players({required this.playerName, required this.GussNumber, this.isWin});
+  String playerName;
+  int GussNumber;
+  bool isWin;
+  Players({required this.playerName})
+      : GussNumber = 0,
+        isWin = false;
 
   void isLower() {
     print("Too low, try again!");
@@ -29,16 +59,32 @@ class Players {
   void isCorrect() {
     print("correct !");
   }
-
-  void startPlay() {
-    var name = stdin.readLineSync()!;
-    playerName = name;
-
-    var guass = stdin.readLineSync()!;
-    GussNumber = guass;
-  }
 }
 
 void main() {
-  var player1 = Players();
+  //create two players
+
+  print("Enter the name of first players");
+  String player1Name = stdin.readLineSync()!;
+  Players player1 = Players(playerName: player1Name);
+
+  print("Enter the name of player 2:");
+  String player2Name = stdin.readLineSync()!;
+  Players player2 = Players(playerName: player2Name);
+
+  GuessingGame game = GuessingGame();
+  // loop untill one player win
+  while (true) {
+    game.startPlay(player1);
+    if (player1.isWin) {
+      print("Congratulations, ${player1.playerName}! You won the game!");
+      break;
+    }
+    game.startPlay(player2);
+    if (player2.isWin) {
+      print("Congratulations, ${player2.playerName}! You won the game!");
+      break;
+    }
+  }
+  print("Game Over! Thanks for playing.");
 }
