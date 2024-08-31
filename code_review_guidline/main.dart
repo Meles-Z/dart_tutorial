@@ -22,20 +22,20 @@ class guessingGame {
   int numberToBeGuessed;
   guessingGame() : numberToBeGuessed = Random().nextInt(20) + 1;
   void startPlay(Players player) {
-    print("${player.playerName} Enter your guss:");
+    print("${player.playerName} Enter your guass:");
     int? guassNumber = int.tryParse(stdin.readLineSync()!);
     if (guassNumber == null) {
       print("Invalid input. please enter valid number");
       return;
     }
-    player.GussNumber = guassNumber;
-    if (player.GussNumber < numberToBeGuessed) {
+    player.guassNumber = guassNumber;
+    if (player.guassNumber < numberToBeGuessed) {
       player.isLower();
       player.isWin = false;
-    } else if (player.GussNumber > numberToBeGuessed) {
+    } else if (player.guassNumber > numberToBeGuessed) {
       player.isGreater();
       player.isWin = false;
-    } else if (player.GussNumber == numberToBeGuessed) {
+    } else if (player.guassNumber == numberToBeGuessed) {
       player.isCorrect();
       player.isWin = true;
     } else {
@@ -47,10 +47,10 @@ class guessingGame {
 
 class Players {
   String playerName;
-  int GussNumber;
+  int guassNumber;
   bool isWin;
   Players({required this.playerName})
-      : GussNumber = 0,
+      : guassNumber = 0,
         isWin = false;
 
   void isLower() {
