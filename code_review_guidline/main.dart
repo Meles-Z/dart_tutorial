@@ -18,9 +18,9 @@ in Dart and gain a better understanding of how the numbering system works in Dar
 import 'dart:io';
 import 'dart:math';
 
-class GuessingGame {
+class guessingGame {
   int numberToBeGuessed;
-  GuessingGame() : numberToBeGuessed = Random().nextInt(20) + 1;
+  guessingGame() : numberToBeGuessed = Random().nextInt(20) + 1;
   void startPlay(Players player) {
     print("${player.playerName} Enter your guss:");
     int? guassNumber = int.tryParse(stdin.readLineSync()!);
@@ -81,7 +81,7 @@ void main() {
   String player2Name = stdin.readLineSync()!;
   Players player2 = Players(playerName: player2Name);
 
-  GuessingGame game = GuessingGame();
+  guessingGame game = guessingGame();
   // loop untill one player win
   while (true) {
     game.startPlay(player1);
