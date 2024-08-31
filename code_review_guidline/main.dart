@@ -87,4 +87,7 @@ void main() {
     }
   }
   print("Game Over! Thanks for playing.");
+
+  // could you tell me how can i do to make my code is not exit after the winner known
+
 }
