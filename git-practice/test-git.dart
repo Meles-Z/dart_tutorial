@@ -13,6 +13,12 @@ $ git log
 
 git checkout -b branch-name to create git branch and checkout to new branch created
 
+How git merge is work:- lets say I have two file on brach review-brach and one file on git-test branch. now when i checkout
+from git-review to git-test branch it will only show one file. Then when merge git merge review-branch on my current brach
+it will take file does not exist in my currenct brach and put in my current brach.
+ git merget test-git (this work when i on review-brach)
+
+git 
 
  */
 }
