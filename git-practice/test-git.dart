@@ -18,7 +18,8 @@ from git-review to git-test branch it will only show one file. Then when merge g
 it will take file does not exist in my currenct brach and put in my current brach.
  git merget test-git (this work when i on review-brach)
 
-git 
+ git branch -d brachname to delete git branch
+ git push --set-upstream origin branch-name :-pushes the branch contents to the remote repository.
 
  */
 }
