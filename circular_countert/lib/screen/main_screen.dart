@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen>
     if (counter>10){
       counter=0;
     }
-    stater="Counter incrementing";
+    stater="Counter decrementing";
    });
 
   }
