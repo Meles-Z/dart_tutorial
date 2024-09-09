@@ -10,7 +10,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+
   int counter=0;
   String stater='';
 
@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen>
     if (counter>10){
       counter=0;
     }
-    stater="Counter decrementing";
+    stater="Counter incrementing";
    });
 
   }
@@ -34,18 +34,7 @@ class _MainScreenState extends State<MainScreen>
     });
 
   }
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,14 +49,14 @@ class _MainScreenState extends State<MainScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
-            Text('$stater $counter'),
+            Text('$stater $counter', style: const TextStyle(fontWeight: FontWeight.bold),),
             const SizedBox(height: 40,),
            Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               CustomElevatedButton(text: 'Increment', f: increment),
+               CustomElevatedButton(text: 'Increment', counterController: increment),
                const SizedBox(width: 20),
-               CustomElevatedButton(text: 'Decrement', f: decrement)
+               CustomElevatedButton(text: 'Decrement', counterController: decrement)
             ],
            )       
           ],
