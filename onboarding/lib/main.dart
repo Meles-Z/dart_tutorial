@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding/screen/sizing_widget.dart';
+import 'package:onboarding/screen/create_task_screen.dart';
+import 'package:onboarding/screen/image_base_screen.dart';
 
 void main(){
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const MaterialApp(
       title: 'Onboarding app',
-      home: MainScreen(),
+      home: CreateTaskScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
