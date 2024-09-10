@@ -39,7 +39,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
         border: Border(
           bottom: BorderSide(
             color: Colors.black, // Border color
-            width: 5, // Border width
+            width: 2, // Border width
           ),
     )
       ),

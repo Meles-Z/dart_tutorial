@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const MaterialApp(
       title: 'Onboarding app',
+      // comment one of them when run different screeen
       home: CreateTaskScreen(),
+      // home: MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
