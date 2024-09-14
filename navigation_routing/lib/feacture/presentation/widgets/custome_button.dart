@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomeButton extends StatelessWidget {
-  const CustomeButton({
-    super.key,
-    this.titleEditingController,
-    this.descriptionEditingController,
-    required this.text,
-    this.onPressed
-  });
+  const CustomeButton(
+      {super.key,
+      this.titleEditingController,
+      this.descriptionEditingController,
+      required this.text,
+      this.onPressed});
 
   final TextEditingController? titleEditingController;
   final TextEditingController? descriptionEditingController;
@@ -18,15 +17,14 @@ class CustomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-       onPressed: onPressed,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            padding: const EdgeInsets.symmetric(
-                horizontal: 30, vertical: 16),
-                shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(3)),
-                ),
-                
+          backgroundColor: Colors.blue,
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
         child: Text(
           text,
           style: const TextStyle(color: Colors.white),
@@ -35,4 +33,3 @@ class CustomeButton extends StatelessWidget {
     );
   }
 }
-

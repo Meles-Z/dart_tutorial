@@ -6,8 +6,9 @@ class CreateTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController titleEditingController=TextEditingController();
-    TextEditingController descriptionEditingController=TextEditingController();
+    TextEditingController titleEditingController = TextEditingController();
+    TextEditingController descriptionEditingController =
+        TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -16,30 +17,46 @@ class CreateTask extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        padding:const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-        child:  Column(
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
-            const Text("Title",style: TextStyle(fontWeight: FontWeight.bold),),
-             CustomeFormContainer(hint: 'Enter task title', controller:titleEditingController,),
-            const SizedBox(height: 16,),
-            const Text('Description', style: TextStyle(fontWeight: FontWeight.bold),),
-             CustomeFormContainer(hint: 'Enter task description', controller:descriptionEditingController,),
-            const SizedBox(height: 16,),
+            const Text(
+              "Title",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            CustomeFormContainer(
+              hint: 'Enter task title',
+              controller: titleEditingController,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const Text(
+              'Description',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            CustomeFormContainer(
+              hint: 'Enter task description',
+              controller: descriptionEditingController,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
             CustomeButton(
-              titleEditingController: titleEditingController, 
+              titleEditingController: titleEditingController,
               descriptionEditingController: descriptionEditingController,
-              text: 'Create', 
-              onPressed: (){
-                if(titleEditingController.text.isNotEmpty && descriptionEditingController.text.isNotEmpty){
+              text: 'Create',
+              onPressed: () {
+                if (titleEditingController.text.isNotEmpty &&
+                    descriptionEditingController.text.isNotEmpty) {
                   Navigator.pop(context, {
-                    "title":titleEditingController.text,
-                    "description":descriptionEditingController.text
+                    "title": titleEditingController.text,
+                    "description": descriptionEditingController.text
                   });
                 }
               },
-              ),
+            ),
           ],
         ),
       ),
@@ -50,15 +67,14 @@ class CreateTask extends StatelessWidget {
 class CustomeFormContainer extends StatelessWidget {
   final String hint;
   final TextEditingController? controller;
-  const CustomeFormContainer({
-    super.key,required this.hint, this.controller });
+  const CustomeFormContainer({super.key, required this.hint, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: TextField(
         controller: controller,

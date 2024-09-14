@@ -60,18 +60,18 @@ class _EditTaskState extends State<EditTask> {
             ),
             const SizedBox(height: 16),
             CustomeButton(
-              titleEditingController: titleEditingController, 
-              descriptionEditingController: descriptionEditingController, 
+              titleEditingController: titleEditingController,
+              descriptionEditingController: descriptionEditingController,
               text: 'Save',
-              onPressed:() {
-              if (titleEditingController.text.isNotEmpty &&
-                  descriptionEditingController.text.isNotEmpty) {
+              onPressed: () {
+                if (titleEditingController.text.isNotEmpty &&
+                    descriptionEditingController.text.isNotEmpty) {
                   Navigator.pop(context, {
                     "title": titleEditingController.text,
                     "description": descriptionEditingController.text
                   });
-              }
-            },
+                }
+              },
             ),
           ],
         ),
@@ -79,4 +79,3 @@ class _EditTaskState extends State<EditTask> {
     );
   }
 }
-

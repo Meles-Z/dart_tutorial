@@ -33,12 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   description: task['description'] ?? '',
                   onTap: () async {
                     // Navigate to the edit screen, passing the task data and its index
-                    var result = await Navigator.pushNamed(context, '/edit-task',
-                        arguments: {
-                          'index': index,
-                          'title': task['title'],
-                          'description': task['description']
-                        });
+                    var result = await Navigator.pushNamed(
+                        context, '/edit-task', arguments: {
+                      'index': index,
+                      'title': task['title'],
+                      'description': task['description']
+                    });
 
                     if (result != null && result is Map<String, String>) {
                       setState(() {
@@ -49,17 +49,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             }).toList(),
-            const SizedBox(height: 16,),
-
-            CustomeButton(text: 'Add New Task', onPressed: () async {
-                    var result = await Navigator.pushNamed(context, "/add-task");
-                    if (result != null && result is Map<String, String>) {
-                      setState(() {
-                        tasks.add(result);
-                      });
-                    }
-                  },
-                  ),
+            const SizedBox(
+              height: 16,
+            ),
+            CustomeButton(
+              text: 'Add New Task',
+              onPressed: () async {
+                var result = await Navigator.pushNamed(context, "/add-task");
+                if (result != null && result is Map<String, String>) {
+                  setState(() {
+                    tasks.add(result);
+                  });
+                }
+              },
+            ),
           ],
         ),
       ),
