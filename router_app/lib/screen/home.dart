@@ -60,8 +60,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   for (var task in taskList) ...[
                     CustomTileContainer(
-                      onTap: () {
-                        context.go("/task-detail");
+                      onTap: () async {
+                        final result = await context.push<Map<String, String>>(
+                          "/task-detail",
+                          extra: task, 
+                        );
+
+                        if (result != null && result.isNotEmpty) {
+                          setState(() {
+                            final index = taskList.indexOf(task);
+                            taskList[index] =
+                                result; 
+                          });
+                        }
                       },
                       leading: task['title']![0].toUpperCase(),
                       title: task['title'] ?? '',

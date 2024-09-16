@@ -41,8 +41,10 @@ GoRouter _router = GoRouter(
   GoRoute(
     name: "taskDetail",
     path: "/task-detail",
+    
     builder: (context, state) {
-      return const TaskDetail();
+      final task = state.extra as Map<String, String>;
+      return  TaskDetail(task: task);
     },
   ),
 ]);
