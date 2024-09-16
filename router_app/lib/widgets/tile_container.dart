@@ -7,12 +7,15 @@ class CustomTileContainer extends StatelessWidget {
       required this.leading,
       required this.title,
       required this.time,
-      required this.color});
+      required this.color,
+      this.onTap
+      });
 
   final String leading;
   final String title;
   final String time;
   final Color color;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,7 @@ class CustomTileContainer extends StatelessWidget {
             VerticalLine(color: color)
           ],
         ),
+        onTap: onTap,
       ),
     );
   }

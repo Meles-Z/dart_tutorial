@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Map<String, String>> taskList = [];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,9 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Image.asset('../assets/stick-man.png'),
-              ),
+              if (taskList.isEmpty)
+                Center(
+                  child: Image.asset('../assets/stick-man.png'),
+                ),
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(8),
@@ -53,40 +56,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              const CustomTileContainer(
-                leading: 'U',
-                title: 'UI/UX App Design',
-                time: 'April 29, 2023',
-                color: Colors.red,
+              Column(
+                children: [
+                  for (var task in taskList) ...[
+                    CustomTileContainer(
+                      onTap: () {
+                        context.go("/task-detail");
+                      },
+                      leading: task['title']![0].toUpperCase(),
+                      title: task['title'] ?? '',
+                      time: task['dueDate'] ?? '',
+                      color: Colors.red,
+                    ),
+                    const SizedBox(height: 16),
+                  ]
+                ],
               ),
-              const SizedBox(height: 12),
-              const CustomTileContainer(
-                leading: 'U',
-                title: 'UI/UX App Design',
-                time: 'April 29, 2023',
-                color: Colors.greenAccent,
-              ),
-              const SizedBox(height: 12),
-              const CustomTileContainer(
-                leading: 'V',
-                title: 'View Candidates',
-                time: 'April 29, 2023',
-                color: Colors.amber,
-              ),
-              const SizedBox(height: 12),
-              const CustomTileContainer(
-                leading: 'F',
-                title: 'Football Cu Drybiling',
-                time: 'April 29, 2023',
-                color: Colors.red,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               CustomButton(
                 title: 'Create task',
-                onPressed: () {
-                  context.go("/add-task");
+                onPressed: () async {
+                  final result =
+                      await context.push<Map<String, String>>("/add-task");
+
+                  if (result != null && result.isNotEmpty) {
+                    setState(() {
+                      taskList.add(result);
+                    });
+                  }
                 },
               )
             ],

@@ -40,7 +40,7 @@ GoRouter _router = GoRouter(
   ),
   GoRoute(
     name: "taskDetail",
-    path: "/add-detail",
+    path: "/task-detail",
     builder: (context, state) {
       return const TaskDetail();
     },
