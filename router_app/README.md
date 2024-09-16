@@ -1,24 +1,41 @@
-# router_app
+# Router App
 
-## Getting started
+## Getting Started
 
-first clone github repository
-run the project you clone
-when you run the project you get the home screen that have add task button
-click on the add task button then it will route you in new page that can enter your title, description and date time format
-click on add button. this button can routed back to the homepage and show the the created task
+**1. Clone the GitHub repository:**
 
-## To edit task
 
-click on the container or ui part of created task
-then they will redirect you new screen called edit screen
-then edit what you want
-click on update button 
-the button also redirect to the home page and it will show you what you change 
+**2. Run the project you cloned:**
 
+Follow the instructions specific to the project for running it locally.
+
+**3. Home Screen:**
+
+When you run the project, you will see the home screen with an "Add Task" button.
+
+**4. Add a Task:**
+
+- Click on the "Add Task" button.
+- You will be redirected to a new page where you can enter your title, description, and date-time format.
+- Click on the "Add" button.
+- You will be routed back to the home page, and the created task will be displayed.
+
+## To Edit a Task
+
+**1. Access the Edit Screen:**
+
+- Click on the container or UI part of the created task.
+- You will be redirected to a new screen called "Edit Screen."
+
+**2. Edit Task Details:**
+
+- Make the desired changes to the task.
+
+**3. Update the Task:**
+
+- Click on the "Update" button.
+- You will be redirected to the home page, where the updated task details will be displayed.
+
+---
 
 Done!!
-
-
-
-
