@@ -1,16 +1,24 @@
 # router_app
 
-A new Flutter project.
+## Getting started
 
-## Getting Started
+first clone github repository
+run the project you clone
+when you run the project you get the home screen that have add task button
+click on the add task button then it will route you in new page that can enter your title, description and date time format
+click on add button. this button can routed back to the homepage and show the the created task
 
-This project is a starting point for a Flutter application.
+## To edit task
 
-A few resources to get you started if this is your first Flutter project:
+click on the container or ui part of created task
+then they will redirect you new screen called edit screen
+then edit what you want
+click on update button 
+the button also redirect to the home page and it will show you what you change 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Done!!
+
+
+
+
