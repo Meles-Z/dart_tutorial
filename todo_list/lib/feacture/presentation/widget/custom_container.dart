@@ -49,8 +49,7 @@ class CostomContainer extends StatelessWidget {
         CustomeVerticalLine(color: color1) 
             ],
           ),
-        )
-         
+        )  
       ],
       ),
     );
