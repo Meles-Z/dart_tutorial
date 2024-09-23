@@ -1,80 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:test_all/screen/main_screen.dart';
+import 'package:test_all/main_screen.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  runApp(const MyApp());
+  testWidgets(
+    "test description",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: MyApp(),
+        ), );
+        Finder finder=find.text("Check email");
+        expect(finder, findsOneWidget);
+    },
+  );
+  testWidgets("test input field", (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: MainScreen(),));
+    Finder email=find.byKey(const ValueKey("email_field"));
+    expect(email, findsOneWidget);
+  });
+
+  testWidgets("button testing", (WidgetTester tester)async{
+    await tester.pumpWidget(const MaterialApp(
+      home: MainScreen(),
+    ));
+    Finder button=find.byType(ElevatedButton);
+    expect(button,findsOneWidget);
+
+  });
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Test for app',
-      home: const HomeScreen(),
-      theme: ThemeData.light(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController name = TextEditingController();
-  TextEditingController title = TextEditingController();
-
-  TextEditingController email = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: TextField(
-              controller: name,
-              decoration: const InputDecoration(border: OutlineInputBorder(),
-              hintText: 'Enter name'),
-              
-            ),
-          ),
-           Padding(
-            padding: const EdgeInsets.all(20),
-            child: TextField(
-              controller: email,
-              decoration: const InputDecoration(border: OutlineInputBorder(),
-              hintText: 'Enter email'),
-            ),
-          ),
-           Padding(
-            padding: const EdgeInsets.all(20),
-            child: TextField(
-              controller: title,
-              decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Enter title'),
-            ),
-          ),
-          const SizedBox(height: 20,),
-          ElevatedButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainScreen(title: title.text, name: name.text, email: email.text)));
-          }, child: const Text('Submit'))
-        ],
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      home: const MainScreen(),
     );
   }
 }

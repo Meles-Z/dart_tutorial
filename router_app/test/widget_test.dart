@@ -1,30 +1,51 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:router_app/main.dart';
+import 'package:go_router/go_router.dart';
+import 'package:router_app/screen/add_task.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Create a task with valid input', (WidgetTester tester) async {
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          name: "addTask",
+          path: "/add-task",
+          builder: (context, state) => const AddTask(),
+        ),
+      ],
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(MaterialApp.router(
+      routerConfig: router,
+    ));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    router.go('/add-task');
+    await tester.pumpAndSettle(); 
+    expect(find.byType(AddTask), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(TextField), findsNWidgets(2));
+
+    // Enter text in Title TextField
+    await tester.enterText(find.byWidgetPredicate((widget) =>
+        widget is TextField &&
+        widget.decoration?.hintText == 'Task Title'), 'Buy milk');
+
+    await tester.enterText(find.byWidgetPredicate((widget) =>
+        widget is TextField &&
+        widget.decoration?.hintText == 'Enter task description...'), 'Need to buy milk for breakfast');
+
+    await tester.tap(find.text('Pick a date'));
+    await tester.pumpAndSettle();
+
+    final selectedDate = DateTime.now();
+    await tester.tap(find.text('${selectedDate.day}')); 
+    await tester.pumpAndSettle(); 
+
+    // Tap the "Add task" button
+    await tester.tap(find.text('Add task'));
+    await tester.pump(); 
+    // Verify that the task was added with the right values
+    expect(find.text('Buy milk'), findsOneWidget);
+    expect(find.text('Need to buy milk for breakfast'), findsOneWidget);
   });
 }
